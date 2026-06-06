@@ -32,3 +32,10 @@ jobs:
           FREE_PASSWORD: ${{ secrets.FREE_PASSWORD }}
           SERVER_PAGE_URL: ${{ secrets.SERVER_PAGE_URL }}
         run: node renew.js
+        
+      - name: 📥 上传失败现场截图
+        if: failure() 
+        uses: actions/upload-artifact@v4
+        with:
+          name: Error-Screenshot-Artifact
+          path: screenshots/*.png
